@@ -1,5 +1,5 @@
 name: Fly Deploy
-on:
+on: push
 push:
 branches:
     - main
