@@ -5,7 +5,7 @@ const server = express();
 const bodyParser = express.urlencoded({extended: false});
 
 //custom modules
-const {html} = require('./template');
+const {html, renderForm} = require('./template');
 const {validate}=require('./validate');
 
 
@@ -18,13 +18,11 @@ const posts=[];
 
 
 server.get('/', (req, res) => {
-    res.send(`Hello Big World! ${html(posts)}`);
+    res.send(`${html(posts)}`);
 });
 
 server.post('/', bodyParser, (req, res)=>{
     const userInputs = {...req.body};   
-
-    console.log(userInputs)
     /*
     const forwardedIpsStr = req.header('x-forwarded-for');
     let IP = '';
@@ -35,15 +33,28 @@ server.post('/', bodyParser, (req, res)=>{
    }
    */
     //test here for error and generate err obj
-    if(!validate(userInputs)){
-        console.log('invalid')
-    }else{
-        posts.push(userInputs);
+    const errors = {};
+
+    if (!userInputs.title) {
+      errors.title = "Please enter title of haiku";
     }
-    
-    
-    res.redirect('/');
-})
+    if (!userInputs.author) {
+      errors.author = "Please enter author of haiku";
+    }
+    if (!userInputs.message) {
+      errors.message = "Please enter author of haiku";
+    }
+
+    if (Object.keys(errors).length) {
+      const body = renderForm(posts, errors, req.body);
+      res.status(400).send(body);
+    } else {
+      const created = Date.now();
+      posts.push(userInputs);
+      console.log(posts);
+      res.redirect("/");
+    }
+});
 
 module.exports = server;
 // Always keep module.exports at the bottom of the file

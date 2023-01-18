@@ -1,4 +1,4 @@
-
+const {sanitize, validate} = require('./validate');
 
 const DUMMY_POSTS = [
     {
@@ -19,9 +19,9 @@ const DUMMY_POSTS = [
 
 function renderPost(post){
     return `<li>
-    <h3>${post.title}</h3>
-    <p>${post.author}</p>
-    <p>${post.message}</p>
+    <h3>${sanitize(post.title)}</h3>
+    <p>${sanitize(post.author)}</p>
+    <p>${sanitize(post.message)}</p>
     </li>`
 }
 
@@ -30,23 +30,22 @@ function renderPosts(posts){//DUMMY_POSTS
 
 }
 
-function renderForm(){//err:{title: true||false, author, message} value:{title, author, message}
-
+function renderForm(posts, errors = {}, values = {}){//err:{title: true||false, author, message} value:{title, author, message}
     return `<form method="POST">
     <div>
     <label for="title">Enter title</label>
-    <input type="text" name="title" id="title"}/>
-    
+    <input type="text" name="title" id="title" value=""/>
+    ${validate(errors.title)}
     </div>
     <div>
     <label for="author">Enter author name</label>
-    <input type="text" name="author" id="author"}/>
-    
+    <input type="text" name="author" id="author"/>
+    ${validate(errors.author)}
     </div>
     <div>
-    <label for="message">Enter title</label>
+    <label for="message">Enter message</label>
     <input type="text" name="message" id="message"/>
-   
+    ${validate(errors.message)}  
     </div>
     <button type="submit">Submit</button>
     </form>`
@@ -66,6 +65,10 @@ function html(posts, err, values){
         <title>Document</title>
     </head>
     <body>
+    <header>
+    <h1>Haikuniverse</h1>
+    <p>A microblog for sharing your favourite haiku</p>
+    </header>
     ${renderForm(err, values)}
     <h2>Haikuniverse posts</h2>
     <ul class='dummy-post'>${renderPosts(DUMMY_POSTS).join('')}</ul>
@@ -75,4 +78,4 @@ function html(posts, err, values){
     </html>`
 }
 
-module.exports = {html}
+module.exports = {html, renderForm}
