@@ -5,8 +5,8 @@ const server = express();
 const bodyParser = express.urlencoded({extended: false});
 
 //custom modules
-const {html, renderForm} = require('./template');
-const {validate}=require('./validate');
+const {html} = require('./template');
+const {sanitize} = require('./validate');
 const {deleteHandler} = require('./deleteHandler');
 let idCount=0;
 //static
@@ -22,16 +22,8 @@ server.get('/', (req, res) => {
 });
 
 server.post('/', bodyParser, (req, res)=>{
-    const userInputs = {...req.body};   
-    /*
-    const forwardedIpsStr = req.header('x-forwarded-for');
-    let IP = '';
-
-   if (forwardedIpsStr) {
-      IP = forwardedIpsStr.split(',')[0];  
-      console.log(IP)
-   }
-   */
+    const userInputs = {...req.body};
+   sanitize(userInputs);
     //test here for error and generate err obj
 
     const errors = {};
@@ -48,18 +40,15 @@ server.post('/', bodyParser, (req, res)=>{
     }
 
     if (Object.keys(errors).length) {
-      const body = renderForm(posts, errors, req.body);
+      const body = html(posts, errors, req.body);
       res.status(400).send(body);
     } else {
-      // const created = Date.now();
-      // posts.push(userInputs);
-      // console.log(posts);
-      
-      //add id to each post and increment
         idCount++;
         posts.push({id: idCount, ...userInputs});
-        console.log(posts)
-      res.redirect("/");
+        console.log(posts);
+        //html(posts);
+        
+        res.redirect("/");
     }
 });
 

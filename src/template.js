@@ -1,12 +1,10 @@
+const { sanitize, validate } = require('./validate');
 
-const {sanitize, validate} = require('./validate');
-
-
-function renderPost(post){
+function renderPost(post) {
     return `<li>
-    <h3>${sanitize(post.title)}</h3>
-    <p>${sanitize(post.author)}</p>
-    <p>${sanitize(post.message)}</p>
+    <h3>${post.title}</h3>
+    <p>${post.author}</p>
+    <p>${post.message}</p>
     <form method="POST" action='/delete/${post.id}'>
         <button type="submit">Delete</button>
     </form>
@@ -15,12 +13,11 @@ function renderPost(post){
 
 function renderPosts(posts) {
     //DUMMY_POSTS
+    console.log(posts)
     return posts.map((post) => renderPost(post)); //['<li>..', '<li>']
 }
 
-
-function renderForm(posts, errors = {}, values = {}){//err:{title: true||false, author, message} value:{title, author, message}
-
+function renderForm(errors = {}) {
     return `<form method="POST">
     <div>
     <label for="title">Enter title</label>
@@ -63,6 +60,4 @@ function html(posts, err, values) {
     </html>`;
 }
 
-
-module.exports = {html, renderForm}
-
+module.exports = { html, renderForm };

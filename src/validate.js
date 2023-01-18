@@ -1,6 +1,11 @@
 
-function sanitize(unsafe) {
-   return unsafe.replace(/</g, "&lt;");
+function sanitize(post) {
+    console.log('sanitize')
+    Object.keys(post).forEach(key=>post[key.name].replace(/</, "b"))
+    console.log(post);
+    
+   
+    return //Object.keys(post).forEach(key=>post[key].replace(/</g, "&lt;"));
  }
 
 
