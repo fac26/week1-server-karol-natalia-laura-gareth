@@ -1,11 +1,9 @@
 function sanitize(post) {
-    console.log('sanitize');
     const sanitisedPost = {};
 
     Object.keys(post).map(
-        (key) => (sanitisedPost[key] = post[key].replace(/</, ''))
+        (key) => (sanitisedPost[key] = post[key].replace(/</, '&lt;'))
     );
-    console.log(sanitisedPost);
 
     return sanitisedPost;
 }

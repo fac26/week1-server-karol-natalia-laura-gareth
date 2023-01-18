@@ -62,5 +62,9 @@ server.post('/delete/:id', bodyParser,(req, res)=>{
     res.redirect('/')
 })
 
+server.use((request, response) => {
+  response.status(404).send("<h1>Not found</h1>");
+});
+
 module.exports = server;
 // Always keep module.exports at the bottom of the file

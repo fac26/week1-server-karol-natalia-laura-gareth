@@ -1,4 +1,4 @@
-const { sanitize, validate } = require('./validate');
+const { validate } = require('./validate');
 
 function renderPost(post) {
     return `<li>
