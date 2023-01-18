@@ -5,7 +5,7 @@ const server = express();
 const bodyParser = express.urlencoded({extended: false});
 
 //custom modules
-const {html} = require('./template');
+const {html, renderForm} = require('./template');
 const {validate}=require('./validate');
 const {deleteHandler} = require('./deleteHandler');
 let idCount=0;
@@ -18,7 +18,7 @@ const posts=[];
 
 
 server.get('/', (req, res) => {
-    res.send(`Hello Big World! ${html(posts)}`);
+    res.send(`${html(posts)}`);
 });
 
 server.post('/', bodyParser, (req, res)=>{
@@ -33,18 +33,35 @@ server.post('/', bodyParser, (req, res)=>{
    }
    */
     //test here for error and generate err obj
-    if(!validate(userInputs)){
-        console.log('invalid')
-    }else{
-        //add id to each post and increment
+
+    const errors = {};
+
+    if (!userInputs.title) {
+      errors.title = "Please enter title of haiku";
+    }
+    if (!userInputs.author) {
+      errors.author = "Please enter author of haiku";
+    }
+    if (!userInputs.message) {
+      errors.message = "Please enter author of haiku";
+
+    }
+
+    if (Object.keys(errors).length) {
+      const body = renderForm(posts, errors, req.body);
+      res.status(400).send(body);
+    } else {
+      // const created = Date.now();
+      // posts.push(userInputs);
+      // console.log(posts);
+      
+      //add id to each post and increment
         idCount++;
         posts.push({id: idCount, ...userInputs});
         console.log(posts)
+      res.redirect("/");
     }
-    
-    
-    res.redirect('/');
-})
+});
 
 server.post('/delete/:id', bodyParser,(req, res)=>{
     const id = req.params.id;
