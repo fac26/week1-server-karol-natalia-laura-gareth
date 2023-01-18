@@ -2,7 +2,7 @@ function sanitize(post) {
     const sanitisedPost = {};
 
     Object.keys(post).map(
-        (key) => (sanitisedPost[key] = post[key].replace(/</, '&lt;'))
+        (key) => (sanitisedPost[key] = post[key].replace(/</g, '&lt;'))
     );
 
     return sanitisedPost;
