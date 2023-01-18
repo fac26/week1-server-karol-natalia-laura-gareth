@@ -1,4 +1,4 @@
-
+const {deleteHandler} = require('./deleteHandler');
 
 const DUMMY_POSTS = [
     {
@@ -22,6 +22,7 @@ function renderPost(post){
     <h3>${post.title}</h3>
     <p>${post.author}</p>
     <p>${post.message}</p>
+    <button onClick=${deleteHandler}>Delete</button>
     </li>`
 }
 
