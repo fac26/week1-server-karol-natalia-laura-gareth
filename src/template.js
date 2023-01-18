@@ -1,37 +1,22 @@
-const {deleteHandler} = require('./deleteHandler');
 
-const DUMMY_POSTS = [
-    {
-        title: 't1',
-        author: 'author1',
-        message: 'post1',
-        id: '1',
-        username: 'GB',
-    },
-    {
-        title: 't2',
-        author: 'author1',
-        message: 'post1',
-        id: '2',
-        username: 'GB',
-    }
-];
-
-function renderPost(post){
+function renderPost(post) {
     return `<li>
     <h3>${post.title}</h3>
     <p>${post.author}</p>
     <p>${post.message}</p>
-    <button onClick=${deleteHandler}>Delete</button>
-    </li>`
+    <form method="POST" action='/delete/${post.id}'>
+        <button type="submit">Delete</button>
+    </form>
+    </li>`;
 }
 
-function renderPosts(posts){//DUMMY_POSTS
-    return posts.map(post=>renderPost(post));//['<li>..', '<li>']
-
+function renderPosts(posts) {
+    //DUMMY_POSTS
+    return posts.map((post) => renderPost(post)); //['<li>..', '<li>']
 }
 
-function renderForm(){//err:{title: true||false, author, message} value:{title, author, message}
+function renderForm() {
+    //err:{title: true||false, author, message} value:{title, author, message}
 
     return `<form method="POST">
     <div>
@@ -50,13 +35,10 @@ function renderForm(){//err:{title: true||false, author, message} value:{title, 
    
     </div>
     <button type="submit">Submit</button>
-    </form>`
-
+    </form>`;
 }
 
-
-
-function html(posts, err, values){
+function html(posts, err, values) {
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -69,11 +51,9 @@ function html(posts, err, values){
     <body>
     ${renderForm(err, values)}
     <h2>Haikuniverse posts</h2>
-    <ul class='dummy-post'>${renderPosts(DUMMY_POSTS).join('')}</ul>
-    <ul class='users-post'>${renderPosts(posts)}</ul>
-        
+    <ul class='users-post'>${renderPosts(posts).join('')}</ul>        
     </body>
-    </html>`
+    </html>`;
 }
 
-module.exports = {html}
+module.exports = { html };
