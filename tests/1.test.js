@@ -5,7 +5,7 @@ const app = require('../src/server');
 const assert = require('node:assert');
 const {html} = require('../src/template');
 
-test('html module returns html page',()=>{    
+test('html module returns html page',()=>{
     const htmlTest = html([{}]);
     assert.match(htmlTest, /<!DOCTYPE html>/);
 })
@@ -94,7 +94,7 @@ test("missing routes return 404 response", async () => {
     const server = app.listen(9876);
     const response = await fetch("http://localhost:9876/definitely-not-real");
     server.close();
-  
+
     assert.equal(response.status, 404);
     const body = await response.text();
     assert.match(body, /Not found/);
