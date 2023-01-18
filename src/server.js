@@ -22,14 +22,23 @@ server.get('/', (req, res) => {
 });
 
 server.post('/', bodyParser, (req, res)=>{
-    const {title, author, message} = req.body;   
+    const userInputs = {...req.body};   
 
+    console.log(userInputs)
+    /*
+    const forwardedIpsStr = req.header('x-forwarded-for');
+    let IP = '';
 
+   if (forwardedIpsStr) {
+      IP = forwardedIpsStr.split(',')[0];  
+      console.log(IP)
+   }
+   */
     //test here for error and generate err obj
-    if(!validate(title)){
+    if(!validate(userInputs)){
         console.log('invalid')
     }else{
-        posts.push({title: title, author: author, message:message, id: 'x'});
+        posts.push(userInputs);
     }
     
     

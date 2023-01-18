@@ -1,12 +1,8 @@
 
 
-function validate(title){ //obj:{title, author, message}
-    /*const validTitle=obj.title.trim()===''?false:true;
-    const validAuthor=obj.author.trim()===''?false:true;
-    const validMessage=obj.message.trim()===''?false:true;
-    return [validTitle, validAuthor, validMessage];
-    */
-   return title.trim()===''?false:true;
+function validate(userInputs){ //obj:{title, author, message}
+   //trim(), sanitize
+   return [];
 }
 
 module.exports={validate}
