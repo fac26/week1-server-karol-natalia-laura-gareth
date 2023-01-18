@@ -1,22 +1,35 @@
 # week1-server-karol-natalia-laura-gareth
 
-Haiku
 
+Server Project: Microblogging
 
-Week 1: Server Project Microblogging
-Contributors: [Karol](https://github.com/Kr33L), [Natalia](https://github.com/nataliarusu), [Laura](https://github.com/LauraK0) and[Gareth](https://github.com/GalKJ)
+Our microblogging site is a resource for sharing haiku's with other fans of this short form of poetry.
+
+Contributors: [Karol](https://github.com/Kr33L), [Natalia](https://github.com/nataliarusu), [Laura](https://github.com/LauraK0) and[Gareth](https://github.com/GalKJ).
+
 You can find our site hosted on fly.io [here](week-one-server-kgnl.fly.dev "Haikuniverse")
 
 ## Setup
 Make sure you have Git and Node (v18) installed.
 
-1. Clone this repo and cd into the directory
-2. Run npm install to install all the dependencies
-3. Run npm run dev to start the server.
-- This uses the nodemon library to auto-restart the server when you save changes.
+1. Clone this repo and `cd` into the directory
+2. Run `npm install` to install all the dependencies
+3. Run `npm run dev` to start the server (using the `nodemon` library to auto-restart the server when you save changes).
 
 ## Test
-Our test folder contains a placeholder test.js file.
+Our test folder contains a `1.test.js` file.
+
+You can run the tests with `npm test`.
+
+Here you will find tests for:
+- test for html module returns html page
+- test to get request made to "/" route shoul return status code 200
+- test that "/" route returns page with form
+- test that form has input with attribute name=title
+- test form has input with attribute name=author
+- test form has input with attribute name=message
+- test that POST with script tag is correctly sanitized
+- test that missing routes returns 404 response 
 
 ## Users Stories
 
