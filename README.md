@@ -5,7 +5,7 @@ Server Project: Microblogging
 
 Our microblogging site is a resource for sharing haiku's with other fans of this short form of poetry.
 
-Contributors: [Karol](https://github.com/Kr33L), [Natalia](https://github.com/nataliarusu), [Laura](https://github.com/LauraK0) and[Gareth](https://github.com/GalKJ).
+Contributors: [Karol](https://github.com/Kr33L), [Natalia](https://github.com/nataliarusu), [Laura](https://github.com/LauraK0) and [Gareth](https://github.com/GalKJ).
 
 You can find our site hosted on fly.io [here](week-one-server-kgnl.fly.dev)
 
