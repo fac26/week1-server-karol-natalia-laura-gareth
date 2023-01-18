@@ -22,8 +22,10 @@ server.get('/', (req, res) => {
 });
 
 server.post('/', bodyParser, (req, res)=>{
-    const userInputs = {...req.body};
-   sanitize(userInputs);
+    const userInputsS = {...req.body};  
+    
+    const userInputs = sanitize(userInputsS);
+    
     //test here for error and generate err obj
 
     const errors = {};
