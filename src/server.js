@@ -46,10 +46,7 @@ server.post('/', bodyParser, (req, res)=>{
       res.status(400).send(body);
     } else {
         idCount++;
-        posts.push({id: idCount, ...userInputs});
-        console.log(posts);
-        //html(posts);
-        
+        posts.push({id: idCount, ...userInputs});   
         res.redirect("/");
     }
 });
@@ -57,8 +54,6 @@ server.post('/', bodyParser, (req, res)=>{
 server.post('/delete/:id', bodyParser,(req, res)=>{
     const id = req.params.id;
     deleteHandler(id, posts);
-    console.log(id)
-   
     res.redirect('/')
 })
 
