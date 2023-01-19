@@ -46,10 +46,7 @@ server.post('/', bodyParser, (req, res)=>{
       res.status(400).send(body);
     } else {
         idCount++;
-        posts.push({id: idCount, ...userInputs});
-        console.log(posts);
-        //html(posts);
-        
+        posts.push({id: idCount, ...userInputs});   
         res.redirect("/");
     }
 });
@@ -57,10 +54,12 @@ server.post('/', bodyParser, (req, res)=>{
 server.post('/delete/:id', bodyParser,(req, res)=>{
     const id = req.params.id;
     deleteHandler(id, posts);
-    console.log(id)
-   
     res.redirect('/')
 })
+
+server.use((request, response) => {
+  response.status(404).send("<h1>Not found</h1>");
+});
 
 module.exports = server;
 // Always keep module.exports at the bottom of the file

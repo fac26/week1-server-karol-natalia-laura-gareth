@@ -1,4 +1,4 @@
-const { sanitize, validate } = require('./validate');
+const { validate } = require('./validate');
 
 function renderPost(post) {
     return `<li>
@@ -12,9 +12,7 @@ function renderPost(post) {
 }
 
 function renderPosts(posts) {
-    //DUMMY_POSTS
-    console.log(posts)
-    return posts.map((post) => renderPost(post)); //['<li>..', '<li>']
+    return posts.map((post) => renderPost(post));
 }
 
 function renderForm(errors = {}) {
