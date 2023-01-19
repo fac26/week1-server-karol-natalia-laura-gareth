@@ -7,7 +7,7 @@ Our microblogging site is a resource for sharing haiku's with other fans of this
 
 Contributors: [Karol](https://github.com/Kr33L), [Natalia](https://github.com/nataliarusu), [Laura](https://github.com/LauraK0) and [Gareth](https://github.com/GalKJ).
 
-You can find our site hosted on fly.io [here](week-one-server-kgnl.fly.dev)
+You can find our site hosted on fly.io [here](https://week-one-server-kgnl.fly.dev/)
 
 ## Setup
 Make sure you have Git and Node (v18) installed.
